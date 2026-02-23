@@ -102,23 +102,23 @@ Create Go structs for all database entities in `internal/pkg/models/`. Include p
 ---
 
 ### [INF-004] Configuration Management
-**Status:** To Do  
+**Status:** Done  
 **Milestone:** MVP v0.1  
 **Priority:** High  
 **Story Points:** 2  
-**Assignee:** (unassigned)  
+**Assignee:** opencode  
 **Dependencies:** INF-001
 
 **Description:**  
 Implement configuration loading from environment variables with sensible defaults. Create `.env.example` template.
 
 **Acceptance Criteria:**
-- [ ] Config struct defined with all required fields
-- [ ] Environment variables loaded with godotenv
-- [ ] Sensible defaults for development
-- [ ] Validation of required config values
-- [ ] `.env.example` created in `configs/`
-- [ ] Configuration documented
+- [x] Config struct defined with all required fields
+- [x] Environment variables loaded with godotenv
+- [x] Sensible defaults for development
+- [x] Validation of required config values
+- [x] `.env.example` created in `configs/`
+- [x] Configuration documented
 
 ---
 

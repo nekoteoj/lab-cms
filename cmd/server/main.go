@@ -16,6 +16,11 @@ import (
 func main() {
 	cfg := config.Load()
 
+	// Validate configuration
+	if err := cfg.Validate(); err != nil {
+		log.Fatalf("Configuration error: %v", err)
+	}
+
 	// Ensure data directory exists
 	if err := ensureDataDir(cfg.DatabaseURL); err != nil {
 		log.Fatalf("Failed to create data directory: %v", err)
