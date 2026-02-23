@@ -12,3 +12,6 @@ data/
 *.dll
 *.so
 *.dylib
+
+# Build
+main
