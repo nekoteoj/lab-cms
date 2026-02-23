@@ -193,6 +193,54 @@ scripts/              # Build and utility scripts
   DATABASE_URL=./data/lab-cms.db
   ```
 
+#### Configuration Implementation Details (INF-004)
+
+The configuration system uses security-by-default principles:
+
+**Configuration Structure (`internal/pkg/config/config.go`):**
+- `Config` struct contains all application settings
+- `Load()` function reads from environment variables with godotenv
+- `Validate()` method checks all required fields and enforces security rules
+- Helper functions: `getEnv`, `getEnvInt`, `getEnvInt64`, `getEnvBool`
+
+**Security Defaults:**
+- `CSRF_ENABLED=true` - CSRF protection enabled by default
+- `COOKIE_HTTPONLY=true` - JavaScript cannot access session cookies
+- `COOKIE_SAMESITE=strict` - Maximum CSRF protection
+- `COOKIE_SECURE` - false in dev, true in production (auto-enabled)
+- `SESSION_SECRET` - **required**, no default for security
+- `ROOT_ADMIN_PASSWORD` - **required**, minimum 8 characters
+
+**Production Mode (`ENV=production`):**
+Enforces stricter security rules that cannot be bypassed:
+- Session secret must be 32+ characters
+- CSRF must be enabled
+- Cookies must be HttpOnly
+- SameSite must be Strict
+- Debug logging is forbidden
+- Secure cookies are mandatory
+
+**Usage Pattern:**
+```go
+// In main.go or application startup:
+cfg := config.Load()
+if err := cfg.Validate(); err != nil {
+    log.Fatalf("Configuration error: %v", err)
+}
+// Use cfg.Port, cfg.DatabaseURL, etc.
+```
+
+**Important:** Always call `Validate()` after `Load()` to ensure security requirements are met. The application will fail to start with a descriptive error if validation fails.
+
+**Adding New Configuration:**
+1. Add field to `Config` struct with appropriate type
+2. Add to `Load()` function with default value
+3. Add validation in `Validate()` method if required
+4. Update `configs/.env.example` with new variable and documentation
+5. Update `docs/configuration.md` with full documentation
+6. Add tests in `config_test.go`
+7. Update this section in AGENTS.md if security-related
+
 ### Testing
 - Test files: `*_test.go` alongside source files
 - Use table-driven tests for multiple test cases
