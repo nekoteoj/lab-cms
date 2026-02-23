@@ -58,23 +58,23 @@ Initialize Go project structure, set up module, install required dependencies (s
 ---
 
 ### [INF-002] Database Schema Design & Migrations
-**Status:** To Do  
+**Status:** Review  
 **Milestone:** MVP v0.1  
 **Priority:** High  
 **Story Points:** 3  
-**Assignee:** (unassigned)  
+**Assignee:** opencode  
 **Dependencies:** INF-001
 
 **Description:**  
 Design database schema for users, lab members, publications, projects, news, and homepage content. Create migration files.
 
 **Acceptance Criteria:**
-- [ ] Schema designed for all required entities
-- [ ] Migration files created in `migrations/` directory
-- [ ] Migration runner implemented
-- [ ] All tables have proper indexes
-- [ ] Foreign key relationships defined
-- [ ] Schema documented in code comments
+- [x] Schema designed for all required entities
+- [x] Migration files created in `migrations/` directory
+- [x] Migration runner implemented
+- [x] All tables have proper indexes
+- [x] Foreign key relationships defined
+- [x] Schema documented in code comments
 
 ---
 
