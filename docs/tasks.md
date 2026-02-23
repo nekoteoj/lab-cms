@@ -38,22 +38,22 @@ Completed, reviewed, and tested.
 ---
 
 ### [INF-001] Project Setup & Dependencies
-**Status:** To Do  
+**Status:** Done  
 **Milestone:** MVP v0.1  
 **Priority:** High  
 **Story Points:** 2  
-**Assignee:** (unassigned)  
+**Assignee:** opencode  
 **Dependencies:** None
 
 **Description:**  
 Initialize Go project structure, set up module, install required dependencies (sqlite driver, godotenv, etc.), create Makefile with basic commands.
 
 **Acceptance Criteria:**
-- [ ] `go.mod` initialized with project name
-- [ ] All dependencies added and `go mod tidy` passes
-- [ ] Makefile created with run, build, test, clean commands
-- [ ] Project directory structure matches AGENTS.md specification
-- [ ] `.gitignore` configured for Go projects
+- [x] `go.mod` initialized with project name
+- [x] All dependencies added and `go mod tidy` passes
+- [x] Makefile created with run, build, test, clean commands
+- [x] Project directory structure matches AGENTS.md specification
+- [x] `.gitignore` configured for Go projects
 
 ---
 
