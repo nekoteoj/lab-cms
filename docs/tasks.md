@@ -79,24 +79,25 @@ Design database schema for users, lab members, publications, projects, news, and
 ---
 
 ### [INF-003] Base Models
-**Status:** To Do  
+**Status:** Review  
 **Milestone:** MVP v0.1  
 **Priority:** High  
 **Story Points:** 2  
-**Assignee:** (unassigned)  
+**Assignee:** opencode  
 **Dependencies:** INF-002
 
 **Description:**  
 Create Go structs for all database entities in `internal/pkg/models/`. Include proper JSON tags and validation tags.
 
 **Acceptance Criteria:**
-- [ ] User model (id, email, password_hash, role, created_at, updated_at)
-- [ ] LabMember model (id, name, role, email, bio, photo_url, personal_page, created_at, updated_at)
-- [ ] Publication model (id, title, authors, venue, year, url, created_at, updated_at)
-- [ ] Project model (id, title, description, status, created_at, updated_at)
-- [ ] News model (id, title, content, published_at, created_at, updated_at)
-- [ ] HomepageContent model (id, section_name, content, updated_at)
-- [ ] All models have proper field tags
+- [x] User model (id, email, role, created_at, updated_at) - password handled separately
+- [x] LabMember model (id, name, role, email, bio, photo_url, personal_page_content, research_interests, is_alumni, display_order, created_at, updated_at)
+- [x] Publication model (id, title, authors_text, venue, year, url, created_at, updated_at)
+- [x] Project model (id, title, description, status, created_at, updated_at)
+- [x] News model (id, title, content, published_at, is_published, created_at, updated_at)
+- [x] HomepageSection model (id, section_key, title, content, display_order, updated_at)
+- [x] All models have proper field tags (JSON and validation)
+- [x] Constants defined for enums (UserRole, LabMemberRole, ProjectStatus)
 
 ---
 
