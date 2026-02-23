@@ -58,7 +58,7 @@ Initialize Go project structure, set up module, install required dependencies (s
 ---
 
 ### [INF-002] Database Schema Design & Migrations
-**Status:** Review  
+**Status:** Done  
 **Milestone:** MVP v0.1  
 **Priority:** High  
 **Story Points:** 3  
@@ -79,7 +79,7 @@ Design database schema for users, lab members, publications, projects, news, and
 ---
 
 ### [INF-003] Base Models
-**Status:** Review  
+**Status:** Done  
 **Milestone:** MVP v0.1  
 **Priority:** High  
 **Story Points:** 2  
