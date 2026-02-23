@@ -2,6 +2,78 @@
 
 This document provides guidelines for AI agents working on the Lab CMS codebase.
 
+## Documentation Standards
+
+### System Requirements
+Functional requirements describing application features and behaviors belong in `docs/requirements.md`.
+
+This document should describe:
+- User roles and permissions
+- Features and functionality the application supports
+- User workflows and interactions
+- Business logic and rules
+
+This document should NOT describe:
+- Technical implementation details (programming languages, frameworks, databases)
+- System architecture or deployment configurations
+- Code patterns or development tools
+
+When adding new features, update the requirements document to reflect the new functionality.
+
+## Task Management
+
+All development tasks are tracked in `docs/tasks.md` using a Trello-style board format.
+
+### How to Use
+
+**Before starting work:**
+- Check "To Do" column for ready tasks
+- Verify dependencies are in "Done" or "Review"
+- Confirm no one else is working on it (check Assignee field)
+
+**When starting a task:**
+- Move task to "In Progress" in `docs/tasks.md`
+- Add your identifier as Assignee
+- Create feature branch: `git checkout -b feature/TASK-ID` (e.g., `feature/INF-001`)
+
+**When task is complete:**
+- Move task to "Review" in `docs/tasks.md`
+- Ensure all acceptance criteria are checked
+- Run tests: `make test`
+- Run linting: `golangci-lint run`
+- Request code review
+
+**When reviewed:**
+- Move task to "Done" in `docs/tasks.md`
+- Merge feature branch to main
+
+**Adding new tasks:**
+- Add to "Backlog" with next available ID
+- Follow task ID prefixes defined in `docs/tasks.md`
+- Include milestone, priority, story points, and acceptance criteria
+
+### Task ID Prefixes
+
+- **INF-** - Infrastructure and setup
+- **AUTH-** - Authentication and authorization
+- **USER-** - User management
+- **ADMIN-** - Admin system features
+- **PUB-** - Public website features
+- **TEST-** - Testing tasks
+- **SEC-** - Security tasks
+- **UI-** - UI/UX improvements
+- **DOC-** - Documentation
+- **DEPLOY-** - Deployment and release
+- **REL-** - Release tasks
+
+### Estimation Guide (Story Points)
+
+- **1 point** - Trivial task (< 2 hours)
+- **2 points** - Small task (2-4 hours)
+- **3 points** - Medium task (4-8 hours)
+- **5 points** - Large task (1-2 days)
+- **8 points** - Very large task (2-3 days) - Consider breaking down
+
 ## Project Overview
 
 - **Language**: Go 1.25.6
