@@ -27,6 +27,7 @@ Lab CMS is a content management system designed for research laboratories. It pr
 
 ### Homepage
 - Display editable lab overview and introduction
+- Show lab name and lab description configured by admins
 - Show recent news/events
 - Highlight featured research projects
 - Provide navigation to other sections
@@ -82,9 +83,10 @@ Lab CMS is a content management system designed for research laboratories. It pr
 - Content status indicators
 
 ### Homepage Management
-- Edit lab overview text
+- Edit lab overview text (rich content)
 - Update featured content
 - Manage homepage layout/sections
+- Lab name and description are configured via Lab Settings
 
 ### Member Management
 - Add new lab members with:
@@ -124,6 +126,14 @@ Lab CMS is a content management system designed for research laboratories. It pr
 - Edit admin permissions (normal vs root)
 - Reset admin passwords
 
+### Lab Settings Management (Root Admin Only)
+- Configure lab identity settings stored in key-value format
+- **Lab Name** - Display name for the lab (optional, defaults to "Research Lab")
+- **Lab Description** - Brief description of the lab (optional, defaults to "A research laboratory")
+- Settings stored in `lab_settings` table (key-value structure for extensibility)
+- Settings editable by root admins only
+- Changes reflect immediately on public website (homepage, header, SEO meta tags)
+
 ---
 
 ## User Stories
@@ -150,3 +160,4 @@ Lab CMS is a content management system designed for research laboratories. It pr
 - As a root admin, I want to add new admin accounts so new lab members can contribute
 - As a root admin, I want to remove departed lab members so the website stays accurate
 - As a root admin, I want to manage admin permissions so I can control access levels
+- As a root admin, I want to configure lab name and description settings so the public website reflects accurate lab identity
