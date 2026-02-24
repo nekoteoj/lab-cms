@@ -143,6 +143,26 @@ Create repository pattern with database connection handling. Implement base repo
 
 ---
 
+### [INF-008] Lab Settings Database Schema
+**Status:** To Do  
+**Milestone:** MVP v0.1  
+**Priority:** High  
+**Story Points:** 2  
+**Assignee:** (unassigned)  
+**Dependencies:** INF-002
+
+**Description:**  
+Create database migration for lab_settings table with key-value structure. Insert default values during migration.
+
+**Acceptance Criteria:**
+- [ ] Migration file for `lab_settings` table (id, setting_key, setting_value, created_at, updated_at)
+- [ ] Unique constraint on setting_key
+- [ ] Default values inserted: lab_name="Research Lab", lab_description="A research laboratory"
+- [ ] Migration runs successfully with `make test`
+- [ ] LabSetting model created in `internal/pkg/models/`
+
+---
+
 ### [INF-006] Error Handling & Logging Framework
 **Status:** To Do  
 **Milestone:** MVP v0.1  
@@ -287,6 +307,28 @@ Create admin dashboard layout with navigation sidebar, header, and content area.
 - [ ] Responsive layout (mobile-friendly)
 - [ ] Active menu item highlighting
 - [ ] Consistent styling across admin pages
+
+---
+
+### [ADMIN-009] Lab Settings Management
+**Status:** To Do  
+**Milestone:** MVP v0.2  
+**Priority:** High  
+**Story Points:** 2  
+**Assignee:** (unassigned)  
+**Dependencies:** INF-008, ADMIN-001
+
+**Description:**  
+Implement lab settings management UI. Allow root admins to configure lab name and description.
+
+**Acceptance Criteria:**
+- [ ] Repository methods for get/update settings in `internal/pkg/repository/`
+- [ ] Admin settings page with form (root admin only)
+- [ ] Form fields: lab name, lab description
+- [ ] Display current values in form
+- [ ] Save changes with validation
+- [ ] Flash messages for success/error
+- [ ] Settings used by public site header and homepage
 
 ---
 
