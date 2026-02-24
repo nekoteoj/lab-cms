@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Internal Server Error - Lab CMS</title>
+    <link rel="stylesheet" href="/static/css/errors.css">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-icon">
+                <svg class="error-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="30" y="40" width="140" height="100" rx="10" fill="none" stroke="currentColor" stroke-width="4" class="server-frame"/>
+                    <circle cx="60" cy="70" r="8" fill="currentColor" class="server-light"/>
+                    <circle cx="85" cy="70" r="8" fill="currentColor" class="server-light"/>
+                    <rect x="50" y="95" width="100" height="6" rx="3" fill="currentColor" class="server-bar"/>
+                    <rect x="50" y="110" width="80" height="6" rx="3" fill="currentColor" class="server-bar"/>
+                    <rect x="50" y="60" width="80" height="3" rx="1.5" fill="currentColor" opacity="0.3"/>
+                    <rect x="50" y="80" width="60" height="3" rx="1.5" fill="currentColor" opacity="0.3"/>
+                    <path d="M140 30 L160 30 L160 50" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" class="error-arrow"/>
+                    <path d="M150 140 L170 140 L170 160" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" class="error-arrow"/>
+                    <circle cx="160" cy="60" r="5" fill="currentColor" class="error-spark"/>
+                    <circle cx="175" cy="165" r="5" fill="currentColor" class="error-spark"/>
+                </svg>
+                <span class="status-code">500</span>
+            </div>
+            <h1 class="error-title">Internal Server Error</h1>
+            <p class="error-message">Something went wrong on our end</p>
+            <p class="error-description">We're experiencing technical difficulties. Our team has been automatically notified and is working to fix the issue. Please try again in a few moments.</p>
+            <div class="error-actions">
+                <button onclick="location.reload()" class="btn btn-primary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Try Again
+                </button>
+                <a href="/" class="btn btn-secondary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Go Home
+                </a>
+            </div>
+            {{if .RequestID}}
+            <p class="request-id">Request ID: {{.RequestID}}</p>
+            {{end}}
+        </div>
+    </div>
+    
+    <script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (e.matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        });
+    </script>
+</body>
+</html>

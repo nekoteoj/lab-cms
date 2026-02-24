@@ -164,23 +164,31 @@ Create database migration for lab_settings table with key-value structure. Inser
 ---
 
 ### [INF-006] Error Handling & Logging Framework
-**Status:** To Do  
+**Status:** Done  
 **Milestone:** MVP v0.1  
 **Priority:** Medium  
 **Story Points:** 2  
-**Assignee:** (unassigned)  
+**Assignee:** opencode  
 **Dependencies:** INF-001
 
 **Description:**  
 Set up consistent error handling patterns and logging framework across the application.
 
 **Acceptance Criteria:**
-- [ ] Custom error types defined
-- [ ] Error wrapping with context
-- [ ] Structured logging setup
-- [ ] Log levels configured (debug, info, error)
-- [ ] HTTP error response helpers
-- [ ] Error handling middleware
+- [x] Custom error types defined
+- [x] Error wrapping with context
+- [x] Structured logging setup
+- [x] Log levels configured (debug, info, error)
+- [x] HTTP error response helpers
+- [x] Error handling middleware
+
+**Implementation Notes:**
+- Created `internal/pkg/logger/logger.go` - Structured logging with JSON/production vs human-readable/dev modes
+- Created `internal/pkg/errors/errors.go` - Application error types with HTTP status mapping
+- Created `internal/app/server/errors.go` - HTTP response helpers with auto-detection (JSON vs HTML)
+- Created `internal/app/server/middleware.go` - Request ID, Recovery, and Logging middleware
+- Created modern 2026-style error pages: 404.html, 500.html, generic.html with CSS animations
+- Integrated in `cmd/server/main.go` with graceful shutdown and middleware chain
 
 ---
 
