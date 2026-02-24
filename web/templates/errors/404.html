@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found - Lab CMS</title>
+    <link rel="stylesheet" href="/static/css/errors.css">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-icon">
+                <svg class="error-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" class="error-circle"/>
+                    <path d="M65 65 L135 135" stroke="currentColor" stroke-width="4" stroke-linecap="round" class="error-cross"/>
+                    <path d="M135 65 L65 135" stroke="currentColor" stroke-width="4" stroke-linecap="round" class="error-cross"/>
+                    <circle cx="100" cy="165" r="5" fill="currentColor" class="error-dot"/>
+                </svg>
+                <span class="status-code">404</span>
+            </div>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-message">We couldn't find the page you're looking for</p>
+            <p class="error-description">The page may have been moved, deleted, or never existed. Double-check the URL or navigate to a different page.</p>
+            <div class="error-actions">
+                <a href="/" class="btn btn-primary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Go Home
+                </a>
+                <button onclick="history.back()" class="btn btn-secondary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Go Back
+                </button>
+            </div>
+            <div class="error-suggestions">
+                <h3>You might be looking for:</h3>
+                <ul>
+                    <li><a href="/">Lab Homepage</a></li>
+                    <li><a href="/members">Lab Members</a></li>
+                    <li><a href="/publications">Publications</a></li>
+                    <li><a href="/projects">Research Projects</a></li>
+                    <li><a href="/news">News & Events</a></li>
+                </ul>
+            </div>
+            {{if .RequestID}}
+            <p class="request-id">Request ID: {{.RequestID}}</p>
+            {{end}}
+        </div>
+    </div>
+    
+    <script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (e.matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        });
+    </script>
+</body>
+</html>
