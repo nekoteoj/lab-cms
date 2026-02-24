@@ -25,7 +25,9 @@ type Config struct {
 	Env  string // Environment: development, production (default: development)
 
 	// Database configuration
-	DatabaseURL string // SQLite database file path (default: ./data/lab-cms.db)
+	DatabaseURL    string // SQLite database file path (default: ./data/lab-cms.db)
+	DBMaxOpenConns int    // Maximum number of open connections (default: 0 = unlimited)
+	DBMaxIdleConns int    // Maximum number of idle connections (default: 0 = Go default)
 
 	// Session & Security
 	SessionSecret  string // Required: Secret for session signing (no default)
@@ -58,6 +60,8 @@ func Load() *Config {
 		Port:              getEnv("PORT", "8080"),
 		Env:               getEnv("ENV", "development"),
 		DatabaseURL:       getEnv("DATABASE_URL", "./data/lab-cms.db"),
+		DBMaxOpenConns:    getEnvInt("DB_MAX_OPEN_CONNS", 0), // 0 = use Go default (unlimited)
+		DBMaxIdleConns:    getEnvInt("DB_MAX_IDLE_CONNS", 0), // 0 = use Go default (2)
 		SessionSecret:     getEnv("SESSION_SECRET", ""),
 		SessionMaxAge:     getEnvInt("SESSION_MAX_AGE", 24),
 		CookieSecure:      getEnvBool("COOKIE_SECURE", false),
