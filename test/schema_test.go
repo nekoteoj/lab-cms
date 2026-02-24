@@ -19,6 +19,7 @@ func TestSchema_AllTablesExist(t *testing.T) {
 		{"projects"},
 		{"news"},
 		{"homepage_sections"},
+		{"lab_settings"},
 		{"project_members"},
 		{"publication_authors"},
 		{"project_publications"},
@@ -114,6 +115,58 @@ func TestSchema_HomepageSectionsTableStructure(t *testing.T) {
 	require.Contains(t, columns, "updated_at")
 }
 
+func TestSchema_LabSettingsTableStructure(t *testing.T) {
+	db := helpers.NewTestDB(t)
+
+	columns := helpers.GetTableColumns(t, db, "lab_settings")
+	require.Contains(t, columns, "id")
+	require.Contains(t, columns, "setting_key")
+	require.Contains(t, columns, "setting_value")
+	require.Contains(t, columns, "created_at")
+	require.Contains(t, columns, "updated_at")
+}
+
+func TestSchema_LabSettingsUniqueConstraint(t *testing.T) {
+	db := helpers.NewTestDB(t)
+
+	// Insert first setting
+	_, err := db.Exec(
+		"INSERT INTO lab_settings (setting_key, setting_value) VALUES (?, ?)",
+		"test_key", "value1",
+	)
+	require.NoError(t, err)
+
+	// Attempt duplicate setting_key
+	_, err = db.Exec(
+		"INSERT INTO lab_settings (setting_key, setting_value) VALUES (?, ?)",
+		"test_key", "value2",
+	)
+	require.Error(t, err, "should error on duplicate setting_key")
+	require.Contains(t, err.Error(), "UNIQUE")
+}
+
+func TestSchema_LabSettingsDefaultValues(t *testing.T) {
+	db := helpers.NewTestDB(t)
+
+	// Check default lab name
+	var labName string
+	err := db.QueryRow(
+		"SELECT setting_value FROM lab_settings WHERE setting_key = ?",
+		"lab_name",
+	).Scan(&labName)
+	require.NoError(t, err)
+	require.Equal(t, "Research Lab", labName)
+
+	// Check default lab description
+	var labDescription string
+	err = db.QueryRow(
+		"SELECT setting_value FROM lab_settings WHERE setting_key = ?",
+		"lab_description",
+	).Scan(&labDescription)
+	require.NoError(t, err)
+	require.Equal(t, "A research laboratory", labDescription)
+}
+
 func TestSchema_JunctionTableStructures(t *testing.T) {
 	db := helpers.NewTestDB(t)
 
@@ -159,6 +212,7 @@ func TestSchema_AllIndexesExist(t *testing.T) {
 		{"idx_news_published_created"},
 		{"idx_homepage_section_key"},
 		{"idx_homepage_display_order"},
+		{"idx_lab_settings_key"},
 	}
 
 	for _, tt := range tests {
