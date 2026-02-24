@@ -144,22 +144,22 @@ Create repository pattern with database connection handling. Implement base repo
 ---
 
 ### [INF-008] Lab Settings Database Schema
-**Status:** To Do  
+**Status:** Done  
 **Milestone:** MVP v0.1  
 **Priority:** High  
 **Story Points:** 2  
-**Assignee:** (unassigned)  
+**Assignee:** opencode  
 **Dependencies:** INF-002
 
 **Description:**  
 Create database migration for lab_settings table with key-value structure. Insert default values during migration.
 
 **Acceptance Criteria:**
-- [ ] Migration file for `lab_settings` table (id, setting_key, setting_value, created_at, updated_at)
-- [ ] Unique constraint on setting_key
-- [ ] Default values inserted: lab_name="Research Lab", lab_description="A research laboratory"
-- [ ] Migration runs successfully with `make test`
-- [ ] LabSetting model created in `internal/pkg/models/`
+- [x] Migration file for `lab_settings` table (id, setting_key, setting_value, created_at, updated_at)
+- [x] Unique constraint on setting_key
+- [x] Default values inserted: lab_name="Research Lab", lab_description="A research laboratory"
+- [x] Migration runs successfully with `make test`
+- [x] LabSetting model created in `internal/pkg/models/`
 
 ---
 

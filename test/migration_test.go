@@ -30,6 +30,7 @@ func TestRunner_RunsMigrationsInOrder(t *testing.T) {
 		"projects",
 		"news",
 		"homepage_sections",
+		"lab_settings",
 		"project_members",
 		"publication_authors",
 		"project_publications",
