@@ -123,23 +123,23 @@ Implement configuration loading from environment variables with sensible default
 ---
 
 ### [INF-005] Base Repository Layer
-**Status:** To Do  
+**Status:** Done  
 **Milestone:** MVP v0.1  
 **Priority:** High  
 **Story Points:** 3  
-**Assignee:** (unassigned)  
+**Assignee:** opencode  
 **Dependencies:** INF-003, INF-004
 
 **Description:**  
 Create repository pattern with database connection handling. Implement base repository with common CRUD operations.
 
 **Acceptance Criteria:**
-- [ ] Database connection pool setup
-- [ ] Base repository interface defined
-- [ ] Transaction support implemented
-- [ ] Connection error handling
-- [ ] Repository initialization in app startup
-- [ ] All SQL uses parameterized queries
+- [x] Database connection pool setup
+- [x] Base repository interface defined
+- [x] Transaction support implemented
+- [x] Connection error handling
+- [x] Repository initialization in app startup
+- [x] All SQL uses parameterized queries
 
 ---
 
@@ -633,22 +633,22 @@ Write comprehensive unit tests for all model structs and validation logic.
 ---
 
 ### [TEST-002] Unit Tests - Repositories
-**Status:** To Do  
+**Status:** Done  
 **Milestone:** Beta v0.9  
 **Priority:** High  
 **Story Points:** 5  
-**Assignee:** (unassigned)  
+**Assignee:** opencode  
 **Dependencies:** INF-005
 
 **Description:**  
 Write unit tests for repository layer using in-memory SQLite or mocks.
 
 **Acceptance Criteria:**
-- [ ] Tests for all repository methods
-- [ ] Test CRUD operations for each entity
-- [ ] Test error scenarios
-- [ ] 80%+ code coverage for repositories
-- [ ] All tests pass
+- [x] Tests for all repository methods
+- [x] Test CRUD operations for each entity
+- [x] Test error scenarios
+- [x] 80%+ code coverage for repositories
+- [x] All tests pass
 
 ---
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,8 +8,9 @@ import (
 	"path/filepath"
 
 	"github.com/nekoteoj/lab-cms/internal/pkg/config"
+	"github.com/nekoteoj/lab-cms/internal/pkg/db"
 	"github.com/nekoteoj/lab-cms/internal/pkg/migrations"
-	_ "modernc.org/sqlite"
+	"github.com/nekoteoj/lab-cms/internal/pkg/repository"
 )
 
 func main() {
@@ -26,19 +26,27 @@ func main() {
 		log.Fatalf("Failed to create data directory: %v", err)
 	}
 
-	// Open database connection
-	db, err := sql.Open("sqlite", cfg.DatabaseURL+"?_fk=1&_journal_mode=WAL&_busy_timeout=5000")
+	// Initialize database manager with connection pool
+	dbManager, err := db.NewManager(cfg.DatabaseURL)
 	if err != nil {
-		log.Fatalf("Failed to open database: %v", err)
+		log.Fatalf("Failed to initialize database: %v", err)
 	}
-	defer db.Close()
+	defer dbManager.Close()
+
+	// Configure connection pool (optional, uses Go defaults if 0)
+	dbManager.ConfigurePool(cfg.DBMaxOpenConns, cfg.DBMaxIdleConns)
 
 	// Run migrations
-	runner := migrations.NewRunner(db, "migrations")
+	runner := migrations.NewRunner(dbManager.GetDB(), "migrations")
 	if err := runner.Run(); err != nil {
 		log.Fatalf("Failed to run migrations: %v", err)
 	}
 	log.Println("Database migrations completed successfully")
+
+	// Initialize repository factory
+	repoFactory := repository.NewFactory(dbManager)
+	// Note: repoFactory will be used by HTTP handlers in future tasks
+	_ = repoFactory // Prevent unused variable warning
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Welcome to Lab CMS")
